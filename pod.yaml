@@ -1,0 +1,24 @@
+###
+######### Used for podman pods to push images
+###
+apiVersion: v1
+kind: Pod
+metadata:
+  generateName: podman-
+  labels:
+    name: podman-app
+    tier: devops
+spec:
+  containers:
+    - image: marshallford/podman:latest
+      command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
+      name: podman
+      securityContext:
+        privileged: true
+#       volumeMounts:
+#         - mountPath: /ucd-lib
+#           name: ucd-lib
+#   volumes:
+#     - name: podman-volume
+#       persistentVolumeClaim:
+#         claimName: podman-volume-pvc ##change here
