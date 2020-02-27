@@ -16,12 +16,10 @@ spec:
         - /busybox/cat
       name: kaniko
       tty: true
-#       securityContext:
-#         privileged: true
-#       volumeMounts:
-#         - mountPath: /ucd-lib
-#           name: ucd-lib
-#   volumes:
-#     - name: podman-volume
-#       persistentVolumeClaim:
-#         claimName: podman-volume-pvc ##change here
+      volumeMounts:
+        - mountPath: /kanik-secret
+          name: /root
+  volumes:
+    - name: kanik-secret
+      secret:
+        secretName: default-dockercfg-sd76r
