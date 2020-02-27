@@ -4,17 +4,18 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  generateName: podman-
+  generateName: kaniko-
   labels:
-    name: podman-app
+    name: kaniko-app
     tier: devops
 spec:
   containers:
-    - image: marshallford/podman:latest
-      command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
-      name: podman
-      securityContext:
-        privileged: true
+    - image: gcr.io/kaniko-project/executor:debug
+      command: /busybox/cat
+      name: kaniko
+      tty: true
+#       securityContext:
+#         privileged: true
 #       volumeMounts:
 #         - mountPath: /ucd-lib
 #           name: ucd-lib
